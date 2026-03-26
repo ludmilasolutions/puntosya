@@ -5,8 +5,8 @@ import {
 } from './ui.js';
 
 // Supabase configuration
-const SUPABASE_URL = 'https://gynalewakwmauttmfrfw.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd5bmFsZXdha3dtYXV0dG1mcmZ3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDQ5NDExOSwiZXhwIjoyMDkwMDcwMTE5fQ.qtsa-HBSk0RrM51Qam2fSySqtZIyQaeVZ0t2We2y8-8';
+const SUPABASE_URL = 'https://gorhsxkjchzduiukotlfo.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdvcmhzeGtjaHpkdWl1a290bGZvIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDQ5NDI5OCwiZXhwIjoyMDkwMDcwMjk4fQ.LKdhz68o30LCfAL4VYSDVvyXawcTVfgGi52UQydpedk';
 
 export const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
