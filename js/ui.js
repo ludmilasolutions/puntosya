@@ -1,6 +1,10 @@
 // js/ui.js
 import { login, register, loginWithGoogle } from './auth.js';
 export function renderLogin() {
+    renderHeader(null);
+    const nav = document.getElementById('main-nav');
+    if (nav) nav.innerHTML = '';
+
     const main = document.getElementById('main-content');
     main.innerHTML = `
         <div class="auth-container">
@@ -55,6 +59,10 @@ export function renderLogin() {
 }
 
 export function renderRegister() {
+    renderHeader(null);
+    const nav = document.getElementById('main-nav');
+    if (nav) nav.innerHTML = '';
+
     const main = document.getElementById('main-content');
     main.innerHTML = `
         <div class="auth-container">
@@ -579,24 +587,78 @@ export function renderAdminDashboard(user) {
     renderHeader(user);
 }
 
+function renderHeader(user, showBack = false) {
+    const header = document.getElementById('main-header');
+    if (!header) return;
+
+    if (!user) {
+        header.innerHTML = '';
+        return;
+    }
+
+    const avatarLetter = (user.user_metadata?.nombre?.[0] || user.email?.[0] || '?').toUpperCase();
+
+    header.innerHTML = `
+        <div class="header-content">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                ${showBack ? '<button onclick="window.history.back()" class="back-btn">←</button>' : ''}
+                <div class="logo">Puntoya</div>
+            </div>
+            <div class="header-profile" onclick="location.hash='/profile'">
+                <div class="avatar">${avatarLetter}</div>
+            </div>
+        </div>
+    `;
+}
+
 function renderNav() {
     const nav = document.getElementById('main-nav');
+    if (!nav) return;
+
+    const currentHash = window.location.hash || '#/';
+    
     nav.innerHTML = `
-        <a href="#/" class="nav-item active">
-            <span style="display: block; font-size: 1.25rem;">🏠</span>
+        <a href="#/" class="nav-item ${currentHash === '#/' ? 'active' : ''}">
+            <span style="font-size: 1.25rem;">🏠</span>
             <span style="font-size: 0.65rem; font-weight: 700;">Home</span>
         </a>
-        <a href="#/explore" class="nav-item">
-            <span style="display: block; font-size: 1.25rem;">🔍</span>
+        <a href="#/explore" class="nav-item ${currentHash === '#/explore' ? 'active' : ''}">
+            <span style="font-size: 1.25rem;">🔍</span>
             <span style="font-size: 0.65rem; font-weight: 700;">Explorar</span>
         </a>
-        <a href="#/history" class="nav-item">
-            <span style="display: block; font-size: 1.25rem;">📊</span>
-            <span style="font-size: 0.65rem; font-weight: 700;">Activity</span>
+        <a href="#/history" class="nav-item ${currentHash === '#/history' ? 'active' : ''}">
+            <span style="font-size: 1.25rem;">📊</span>
+            <span style="font-size: 0.65rem; font-weight: 700;">Actividad</span>
         </a>
-        <a href="#/profile" class="nav-item">
-            <span style="display: block; font-size: 1.25rem;">👤</span>
-            <span style="font-size: 0.65rem; font-weight: 700;">Profile</span>
+        <a href="#/profile" class="nav-item ${currentHash === '#/profile' ? 'active' : ''}">
+            <span style="font-size: 1.25rem;">👤</span>
+            <span style="font-size: 0.65rem; font-weight: 700;">Perfil</span>
+        </a>
+    `;
+}
+
+function renderNavMerchant() {
+    const nav = document.getElementById('main-nav');
+    if (!nav) return;
+
+    const currentHash = window.location.hash;
+    
+    nav.innerHTML = `
+        <a href="#/merchant/dashboard" class="nav-item ${currentHash === '#/merchant/dashboard' ? 'active' : ''}">
+            <span style="font-size: 1.25rem;">📊</span>
+            <span style="font-size: 0.65rem; font-weight: 700;">Panel</span>
+        </a>
+        <a href="#/merchant/load" class="nav-item ${currentHash === '#/merchant/load' ? 'active' : ''}">
+            <span style="font-size: 1.25rem;">➕</span>
+            <span style="font-size: 0.65rem; font-weight: 700;">Cargar</span>
+        </a>
+        <a href="#/merchant/promos" class="nav-item ${currentHash === '#/merchant/promos' ? 'active' : ''}">
+            <span style="font-size: 1.25rem;">📣</span>
+            <span style="font-size: 0.65rem; font-weight: 700;">Promos</span>
+        </a>
+        <a href="#/profile" class="nav-item ${currentHash === '#/profile' ? 'active' : ''}">
+            <span style="font-size: 1.25rem;">👤</span>
+            <span style="font-size: 0.65rem; font-weight: 700;">Perfil</span>
         </a>
     `;
 }
