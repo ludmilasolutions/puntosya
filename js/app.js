@@ -5,8 +5,8 @@ import {
 } from './ui.js';
 
 // Supabase configuration
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://gynalewakwmauttmfrfw.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd5bmFsZXdha3dtYXV0dG1mcmZ3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDQ5NDExOSwiZXhwIjoyMDkwMDcwMTE5fQ.qtsa-HBSk0RrM51Qam2fSySqtZIyQaeVZ0t2We2y8-8';
 
 export const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
