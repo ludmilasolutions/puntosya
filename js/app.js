@@ -1,0 +1,61 @@
+import { 
+    renderHome, renderLogin, renderRegister, renderExplore, renderMerchantDetail, 
+    renderHistory, renderProfile, renderMerchantDashboard, renderMerchantLoadPoints,
+    renderMerchantRewards
+} from './ui.js';
+
+// Supabase configuration
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+export const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const routes = {
+    '/': renderHome,
+    '/login': renderLogin,
+    '/register': renderRegister,
+    '/explore': renderExplore,
+    '/history': renderHistory,
+    '/profile': renderProfile,
+    // Merchant Routes
+    '/merchant/dashboard': renderMerchantDashboard,
+    '/merchant/load': renderMerchantLoadPoints,
+    '/merchant/rewards': renderMerchantRewards,
+    '/merchant/promos': renderMerchantPromos,
+    // Admin Routes
+    '/admin': renderAdminDashboard,
+};
+
+async function router() {
+    const hash = window.location.hash.slice(1) || '/';
+    const user = await checkSession();
+
+    if (!user && (hash !== '/login' && hash !== '/register')) {
+        renderLogin();
+        return;
+    }
+
+    // Handle dynamic routes
+    if (hash.startsWith('/merchant/') && !routes[hash]) {
+        const id = hash.split('/')[2];
+        // If it's a specific merchant detail (client view)
+        renderMerchantDetail(user, id);
+        return;
+    }
+
+    const view = routes[hash] || renderHome;
+    view(user);
+}
+
+window.addEventListener('hashchange', router);
+window.addEventListener('load', async () => {
+    initAuth();
+    router();
+
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('SW Registered', reg))
+            .catch(err => console.error('SW Registration Failed', err));
+    }
+});

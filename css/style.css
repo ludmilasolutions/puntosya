@@ -1,0 +1,340 @@
+/* Design Tokens */
+:root {
+    --primary: #4f46e5;
+    --primary-light: #818cf8;
+    --bg-light: #f0f4ff;
+    --card-bg: #ffffff;
+    --card-border: #e2e8ff;
+    --text-main: #1a1a2e;
+    --text-sec: #8892b0;
+    --success: #059669;
+    --error: #dc2626;
+    --warning: #f59e0b;
+    --gradient: linear-gradient(135deg, #4f46e5, #7c3aed);
+    --radius: 18px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    line-height: 1.5;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.app-container {
+    max-width: 390px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: var(--bg-light);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.header {
+    padding: 1rem;
+    background-color: var(--card-bg);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.content {
+    flex: 1;
+    padding: 1rem;
+    padding-bottom: 5rem; /* Space for bottom nav */
+}
+
+.nav-bar {
+    position: fixed;
+    bottom: 0;
+    width: 390px;
+    max-width: 100%;
+    background-color: var(--card-bg);
+    display: flex;
+    justify-content: space-around;
+    padding: 0.75rem 0;
+    border-top: 1.5px solid var(--card-border);
+    z-index: 10;
+}
+
+/* Utilities */
+.card {
+    background-color: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow);
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+    border: none;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    background: var(--gradient);
+    color: white;
+}
+
+/* Home Screen Components */
+.home-container {
+    padding-bottom: 2rem;
+}
+
+.home-container h2 {
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.home-container h3 {
+    margin: 1.5rem 0 1rem;
+    font-weight: 700;
+}
+
+.points-card {
+    background: var(--gradient);
+    color: white;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.points-card h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+}
+
+.points-card .level-label {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    backdrop-filter: blur(5px);
+}
+
+.progress-container {
+    background: rgba(255, 255, 255, 0.2);
+    height: 8px;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+.progress-bar {
+    background: white;
+    height: 100%;
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--text-sec);
+    text-align: center;
+    flex: 1;
+    transition: color 0.2s;
+}
+
+.nav-item.active {
+    color: var(--primary);
+}
+
+.nav-item span {
+    display: block;
+}
+
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 2rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-sec);
+}
+
+.input-group input {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    border: 1.5px solid var(--card-border);
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.level-strip {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: none;
+}
+
+.level-strip::-webkit-scrollbar {
+    display: none;
+}
+
+.level-card {
+    min-width: 120px;
+    background: white;
+    border: 1.5px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.level-card.active {
+    border-color: var(--primary);
+    background: #f5f3ff;
+}
+
+.level-card emoji {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.reward-scroll {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: none;
+}
+
+.reward-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.reward-card {
+    min-width: 160px;
+    background: white;
+    border-radius: 15px;
+    border: 1.5px solid var(--card-border);
+    overflow: hidden;
+}
+
+.reward-img {
+    height: 100px;
+    background: #eef2ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.reward-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.badge-fisico { background: #fef3c7; color: #d97706; }
+.badge-descuento { background: #d1fae5; color: #059669; }
+.badge-experiencia { background: #ede9fe; color: #7c3aed; }
+.badge-credito { background: #e0f2fe; color: #0284c7; }
+
+.history-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-icon {
+    width: 40px;
+    height: 40px;
+    background: #f5f3ff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.history-info {
+    flex: 1;
+}
+
+.history-info h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.history-info p {
+    font-size: 0.8rem;
+    color: var(--text-sec);
+}
+
+.history-points {
+    font-weight: 800;
+}
+
+.history-points.positive { color: var(--success); }
+.history-points.negative { color: var(--error); }
+
+.qr-fab {
+    position: fixed;
+    bottom: 5.5rem;
+    right: 1.5rem;
+    width: 60px;
+    height: 60px;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+    color: white;
+    font-size: 1.5rem;
+    z-index: 20;
+    cursor: pointer;
+}
