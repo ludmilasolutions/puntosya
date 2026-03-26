@@ -1,4 +1,5 @@
 // js/ui.js
+import { login, register, loginWithGoogle } from './auth.js';
 export function renderLogin() {
     const main = document.getElementById('main-content');
     main.innerHTML = `
@@ -36,10 +37,8 @@ export function renderLogin() {
         const email = e.target[0].value;
         const password = e.target[1].value;
         try {
-            // Assuming 'login' function is defined elsewhere and handles authentication
-            // await login(email, password); 
-            console.log('Login attempt with:', email, password);
-            alert('Login functionality not yet implemented. Check console.');
+            await login(email, password); 
+            console.log('Login successful');
         } catch (err) {
             alert('Error: ' + err.message);
         }
@@ -47,10 +46,8 @@ export function renderLogin() {
 
     document.getElementById('google-login-btn').addEventListener('click', async () => {
         try {
-            // Assuming 'loginWithGoogle' function is defined elsewhere and handles Google authentication
-            // await loginWithGoogle();
+            await loginWithGoogle();
             console.log('Google login attempt');
-            alert('Google login functionality not yet implemented. Check console.');
         } catch (err) {
             alert('Error: ' + err.message);
         }
@@ -79,6 +76,19 @@ export function renderRegister() {
             <p style="text-align: center;">¿Ya tienes cuenta? <a href="#/login">Inicia Sesión</a></p>
         </div>
     `;
+
+    document.getElementById('register-btn').addEventListener('click', async () => {
+        const name = document.getElementById('reg-name').value;
+        const email = document.getElementById('reg-email').value;
+        const password = document.getElementById('reg-password').value;
+        try {
+            await register(email, password, { nombre: name });
+            alert('Registro exitoso. Revisa tu email para confirmar.');
+            location.hash = '/login';
+        } catch (err) {
+            alert('Error: ' + err.message);
+        }
+    });
 }
 
 export function renderHome(user) {

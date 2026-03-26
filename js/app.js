@@ -3,6 +3,7 @@ import {
     renderHistory, renderProfile, renderMerchantDashboard, renderMerchantLoadPoints,
     renderMerchantRewards, renderMerchantPromos, renderAdminDashboard
 } from './ui.js';
+import { initAuth, checkSession } from './auth.js';
 
 // Supabase configuration
 const SUPABASE_URL = 'https://gorhsxkchzduiukotlfo.supabase.co';
