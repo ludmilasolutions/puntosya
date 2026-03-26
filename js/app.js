@@ -1,14 +1,14 @@
 import { 
     renderHome, renderLogin, renderRegister, renderExplore, renderMerchantDetail, 
     renderHistory, renderProfile, renderMerchantDashboard, renderMerchantLoadPoints,
-    renderMerchantRewards
+    renderMerchantRewards, renderMerchantPromos, renderAdminDashboard
 } from './ui.js';
 
 // Supabase configuration
 const SUPABASE_URL = 'https://gorhsxkchzduiukotlfo.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdvcmhzeGtjaHpkdWl1a290bGZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0OTQyOTgsImV4cCI6MjA5MDA3MDI5OH0.hdZ6dNSW-qXs3QzjYJKKjUVBECe8pADJ6qoOzvhO51o';
 
-export const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+export const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const routes = {
     '/': renderHome,

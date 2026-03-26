@@ -8,3 +8,5 @@ build/
 .vscode/
 .idea/
 *.log
+clavepuntoya.txt
+setup_db.js
