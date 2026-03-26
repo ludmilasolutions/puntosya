@@ -34,3 +34,13 @@ export async function register(email, password, metadata) {
 export async function logout() {
     await supabase.auth.signOut();
 }
+
+export async function loginWithGoogle() {
+    const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+            redirectTo: window.location.origin
+        }
+    });
+    if (error) throw error;
+}

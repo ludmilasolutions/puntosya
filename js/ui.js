@@ -7,21 +7,53 @@ export function renderLogin() {
             <p>Accede para gestionar tus puntos y premios.</p>
             <div class="input-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="tu@email.com">
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="tu@email.com">
+                </div>
+                <div class="input-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Entrar</button>
+            </form>
+            <div style="text-align: center; margin-top: 1.5rem; color: var(--text-sec); font-size: 0.9rem;">
+                <p>¿O prefieres usar social?</p>
+                <button id="google-login-btn" class="btn" style="width: 100%; margin-top: 0.75rem; border: 1.5px solid #ddd; display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: white;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" width="18">
+                    Continuar con Google
+                </button>
             </div>
-            <div class="input-group">
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" placeholder="••••••••">
-            </div>
-            <button id="login-btn" class="btn btn-primary">Iniciar Sesión</button>
-            <p style="text-align: center;">¿No tienes cuenta? <a href="#/register">Regístrate</a></p>
+            <p style="text-align: center; margin-top: 1.5rem; color: var(--text-sec);">
+                ¿No tienes cuenta? <a href="#/register" style="color: var(--primary); font-weight: 700;">Regístrate</a>
+            </p>
         </div>
     `;
     
-    document.getElementById('login-btn').addEventListener('click', () => {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        // logic for login
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = e.target[0].value;
+        const password = e.target[1].value;
+        try {
+            // Assuming 'login' function is defined elsewhere and handles authentication
+            // await login(email, password); 
+            console.log('Login attempt with:', email, password);
+            alert('Login functionality not yet implemented. Check console.');
+        } catch (err) {
+            alert('Error: ' + err.message);
+        }
+    });
+
+    document.getElementById('google-login-btn').addEventListener('click', async () => {
+        try {
+            // Assuming 'loginWithGoogle' function is defined elsewhere and handles Google authentication
+            // await loginWithGoogle();
+            console.log('Google login attempt');
+            alert('Google login functionality not yet implemented. Check console.');
+        } catch (err) {
+            alert('Error: ' + err.message);
+        }
     });
 }
 
